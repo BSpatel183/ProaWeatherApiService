@@ -1,7 +1,7 @@
 ﻿using ProaWeatherApiService.Models;
 using System.Data.Entity;
 
-namespace ProaWeatherApiService.Controllers
+namespace ProaWeatherApiService
 {
     public class ApplicationDbContext : DbContext
     {
