@@ -13,6 +13,5 @@ namespace ProaWeatherApiService.Models
         public int WeatherStation_Id { get; set; }
         [ForeignKey("WeatherStation_Id")]
         public virtual WeatherStations WeatherStations { get; set; }
-
     }
 }
