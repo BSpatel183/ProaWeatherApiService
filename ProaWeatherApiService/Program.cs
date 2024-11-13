@@ -19,7 +19,16 @@ namespace ProaWeatherApiService
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DbConnection")));
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowReactApp",
+                    policy => policy.WithOrigins("http://localhost:3002")  // Replace with your frontend URL
+                                    .AllowAnyHeader()
+                                    .AllowAnyMethod());
+            });
+
             var app = builder.Build();
+            app.UseCors("AllowReactApp");
             if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
