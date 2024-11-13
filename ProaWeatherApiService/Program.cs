@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace ProaWeatherApiService
 {
     public class Program
@@ -10,6 +12,12 @@ namespace ProaWeatherApiService
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            var configuration = builder.Configuration;
+
+            // Add services, for example, EF Core
+            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(configuration.GetConnectionString("DbConnection")));
 
             var app = builder.Build();
             if (app.Environment.IsDevelopment())
