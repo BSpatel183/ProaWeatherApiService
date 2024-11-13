@@ -20,6 +20,7 @@ namespace ProaWeatherApiService.Controllers
         {
             var context = new ApplicationDbContext(_options);
             var weatherStations = await context.WeatherStations
+                .Include(x=>x.WeatherVariables)
                 .ToListAsync();
             return Ok(weatherStations);
         }
